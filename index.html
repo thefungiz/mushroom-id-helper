@@ -37,7 +37,7 @@
           <label class="label" for="region">Region</label>
           <fieldset class="control">
             <label class="radio">
-              <input type="radio" checked name="region" value="Indian Cave" style="margin-right: 0.5em;">Indian Cave</label>
+              <input type="radio" name="region" value="Indian Cave" style="margin-right: 0.5em;">Indian Cave</label>
               <input type="radio" name="region" value="Other" style="margin-right: 0.5em;">Other</label>
           </fieldset>
           <input class="input" type="text" name="region_details" value="">
@@ -77,7 +77,9 @@
 
 </body>
 <script>
-  const returnValues = () => Object.values(document.querySelector('form')).reduce((obj, field) => { obj[field.name] = field.value; return obj }, {});
+  // const returnValues = () => Object.values(document.querySelector('form')).reduce((obj, field) => { obj[field.name] = field.value; return obj }, {});
+
+  const returnValues = () => Object.fromEntries(new FormData(document.getElementById('voucher')));
 
   const extractJson = (json) => {
     let result = '';
