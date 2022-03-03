@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+<title>Mushroom Voucher</title>
+
+<head>
+
+</head>
+
+<body>
+  <section class="section">
+    <div class="container">
+      <form action="" method="" id="voucher">
+        <div class="field">
+          <label class="label" for="taxon">Taxon</label>
+          <input class="input" type="text" name="taxon" value="">
+        </div>
+
+        <div class="field">
+          <label class="label" for="date">Date</label>
+          <input class="input" type="datetime-local" name="date" value="">
+        </div>
+
+        <div class="field">
+          <label class="label" for="collector">Collector</label>
+          <input class="input" type="text" name="collector" value="">
+        </div>
+
+        <div class="field">
+          <label class="label" for="collection_number">Collection Number</label>
+          <input class="input" type="text" name="collection_number" value="">
+        </div>
+
+        <div class="field">
+          <label class="label" for="region">Region</label>
+          <fieldset class="control">
+            <label class="radio">
+              <input type="radio" checked name="region" value="Indian Cave" style="margin-right: 0.5em;">Indian Cave</label>
+              <input type="radio" name="region" value="Other" style="margin-right: 0.5em;">Other</label>
+          </fieldset>
+          <input class="input" type="text" name="region_details" value="">
+        </div>
+
+        <div class="field">
+          <label class="label" for="habitat">Habitat</label>
+          <fieldset class="control">
+            <label class="radio">
+              <input type="radio" name="habitat" value="Wood" style="margin-right: 0.5em;">Wood</label>
+              <input type="radio" name="habitat" value="Moss" style="margin-right: 0.5em;">Moss</label>
+              <input type="radio" name="habitat" value="Litter" style="margin-right: 0.5em;">Litter</label>
+              <input type="radio" name="habitat" value="Soil" style="margin-right: 0.5em;">Soil</label>
+              <input type="radio" name="habitat" value="Fungus" style="margin-right: 0.5em;">Fungus</label>
+              <input type="radio" name="habitat" value="Other" style="margin-right: 0.5em;">Other</label>
+          </fieldset>
+          <input class="input" type="text" name="habitat_details" value="">
+        </div>
+
+        <div class="field">
+          <label class="label" htmlFor="notes">
+            Notes (color, taste, odor, shape, etc.)
+          </label>
+          <div class="control">
+            <textarea class="textarea" rows="10" name="notes" ></textarea>
+          </div>
+        </div>
+      </form>
+
+      <div class="field">
+        <button class="button" id="copy">Copy to clipboard</button>
+      </div>
+    </div>
+
+    </div>
+  </section>
+
+</body>
+<script>
+  const returnValues = () => Object.values(document.querySelector('form')).reduce((obj, field) => { obj[field.name] = field.value; return obj }, {});
+
+  const extractJson = (json) => {
+    let result = '';
+
+    Object.keys(json).forEach((key) => {
+      let value = json[key];
+
+      if (typeof (value) === 'object') {
+        value = extractJson(value);
+      }
+
+      result += `${key}: ${value}\n`;
+    });
+
+    return result;
+  }
+
+  document.querySelector('form').addEventListener('change', function () {
+    const json = returnValues();
+    const result = `${JSON.stringify(json)}<br>${extractJson(json)}`
+
+    document.getElementById('output').innerHTML = result
+  });
+
+  document.getElementById("voucher").addEventListener("submit", function (event) {
+    event.preventDefault()
+  });
+
+  document.getElementById("copy").addEventListener("click", () => {
+    const json = returnValues();
+    var text = extractJson(json);
+    navigator.clipboard.writeText(text).then(function () {
+      console.log(`Async: Copying to clipboard was successful\n${text}\n${JSON.stringify(json)}`);
+    }, function (err) {
+      console.error('Async: Could not copy text: ', err);
+    });
+  });
+</script>
+
+</html>
