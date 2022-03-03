@@ -77,9 +77,9 @@
 
 </body>
 <script>
-  // const returnValues = () => Object.values(document.querySelector('form')).reduce((obj, field) => { obj[field.name] = field.value; return obj }, {});
-
   const returnValues = () => Object.fromEntries(new FormData(document.getElementById('voucher')));
+
+  const titleCase = (input) => input.split('_').map(x => x.charAt(0).toUpperCase() + x.slice(1)).join(' ');
 
   const extractJson = (json) => {
     let result = '';
@@ -91,7 +91,7 @@
         value = extractJson(value);
       }
 
-      result += `${key}: ${value}\n`;
+      result += `${titleCase(key)}: ${value}\n`;
     });
 
     return result;
