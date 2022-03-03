@@ -1,11 +1,18 @@
 <!DOCTYPE html>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
-<title>Mushroom Voucher</title>
 
 <head>
-
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+  <title>Mushroom Voucher</title>
+  <style>
+    body {
+      background-color: black;
+    }
+    .section {
+      background-color: blanchedalmond;
+    }
+  </style>
 </head>
 
 <body>
@@ -38,7 +45,7 @@
           <fieldset class="control">
             <label class="radio">
               <input type="radio" name="region" value="Indian Cave" style="margin-right: 0.5em;">Indian Cave</label>
-              <input type="radio" name="region" value="Other" style="margin-right: 0.5em;">Other</label>
+            <input type="radio" name="region" value="Other" style="margin-right: 0.5em;">Other</label>
           </fieldset>
           <input class="input" type="text" name="region_details" value="">
         </div>
@@ -48,11 +55,11 @@
           <fieldset class="control">
             <label class="radio">
               <input type="radio" name="habitat" value="Wood" style="margin-right: 0.5em;">Wood</label>
-              <input type="radio" name="habitat" value="Moss" style="margin-right: 0.5em;">Moss</label>
-              <input type="radio" name="habitat" value="Litter" style="margin-right: 0.5em;">Litter</label>
-              <input type="radio" name="habitat" value="Soil" style="margin-right: 0.5em;">Soil</label>
-              <input type="radio" name="habitat" value="Fungus" style="margin-right: 0.5em;">Fungus</label>
-              <input type="radio" name="habitat" value="Other" style="margin-right: 0.5em;">Other</label>
+            <input type="radio" name="habitat" value="Moss" style="margin-right: 0.5em;">Moss</label>
+            <input type="radio" name="habitat" value="Litter" style="margin-right: 0.5em;">Litter</label>
+            <input type="radio" name="habitat" value="Soil" style="margin-right: 0.5em;">Soil</label>
+            <input type="radio" name="habitat" value="Fungus" style="margin-right: 0.5em;">Fungus</label>
+            <input type="radio" name="habitat" value="Other" style="margin-right: 0.5em;">Other</label>
           </fieldset>
           <input class="input" type="text" name="habitat_details" value="">
         </div>
@@ -62,7 +69,7 @@
             Notes (color, taste, odor, shape, etc.)
           </label>
           <div class="control">
-            <textarea class="textarea" rows="10" name="notes" ></textarea>
+            <textarea class="textarea" rows="10" name="notes"></textarea>
           </div>
         </div>
       </form>
